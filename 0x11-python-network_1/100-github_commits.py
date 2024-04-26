@@ -1,7 +1,6 @@
-
 #!/usr/bin/python3
 """
-Module to use the information after access github
+Module to access to the GitHub API
 """
 import requests
 from requests.auth import HTTPBasicAuth
@@ -13,12 +12,12 @@ def main(argv):
     Function that list 10 commits
     """
 
-    def p_commits(i, l_commit):
+    def pcommit(i, commit_list):
         """
         List the commits, less than 10 commits
         """
-        sha = l_commit[i].get('sha')
-        commit = l_commit[i].get('commit')
+        sha = commit_list[i].get('sha')
+        commit = commit_list[i].get('commit')
         author = commit.get('author')
         name = author.get('name')
         print('{}: {}'.format(sha, name))
@@ -28,15 +27,15 @@ def main(argv):
     headers = {"Accept": "application/vnd.github.v3+json"}
     response = requests.get('https://api.github.com/repos/' + owner +
                             '/' + repo + '/commits', headers=headers)
-    l_commit = response.json()
-    size = len(l_commit)
-    if size < 9:
+    commit_list = response.json()
+    size = len(commit_list)
+    if size < 10:
         for i in range(0, size):
-            p_commits(i, l_commit)
+            pcommit(i, commit_list)
     else:
         for i in range(0, 10):
-            p_commits(i, l_commit)
+            pcommit(i, commit_list)
 
 
 if __name__ == "__main__":
-    main(argv)
+    main(argv) 
