@@ -4,6 +4,7 @@
 from urllib import request, error
 from sys import argv
 
+
 def request_header_property(url: str) -> str:
     
     try:
@@ -11,6 +12,7 @@ def request_header_property(url: str) -> str:
             return rep.info()['X-Request-Id']
     except error.URLError as er:
         return er.reason
+
 
 if __name__ == "__main__":
     print(request_header_property(argv[1]))
