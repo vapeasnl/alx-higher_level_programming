@@ -1,16 +1,22 @@
 #!/usr/bin/python3
-"""Send a request to the url and display the response"""
-
-from requests import get
+"""
+Sends a request to the URL and displays the body of the response.
+"""
+import requests
 from sys import argv
 
-def request_header_property(url: str) -> str:
-    
-    response = get(url)
-    if int(response.status_code) >= 400:
-        return ("Error code: {}".format(response.status_code))
 
-    return response.text
+def main(argv):
+    """
+    Method that manage urllib.error.HTTPError exceptions
+    """
+    url = argv[1]
+    req = requests.get(url)
+    if req.status_code == requests.codes.ok:
+        print(req.text)
+    else:
+        print("Error code: {}".format(req.status_code))
+
 
 if __name__ == "__main__":
-    print(request_header_property(argv[1]))
+    main(argv)
