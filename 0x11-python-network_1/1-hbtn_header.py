@@ -7,10 +7,10 @@ from sys import argv
 def request_header_property(url: str) -> str:
     
     try:
-        with request.urlopen(url) as response:
-            return response.info()['X-Request-Id']
-    except error.URLError as e:
-        return e.reason
+        with request.urlopen(url) as rep:
+            return rep.info()['X-Request-Id']
+    except error.URLError as er:
+        return er.reason
 
 if __name__ == "__main__":
     print(request_header_property(argv[1]))
