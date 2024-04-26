@@ -5,12 +5,6 @@ from urllib import request, error, parse
 from sys import argv
 
 def send_email_to_url(url: str, email: str) -> str:
-    """
-    Send a request to the URL specified and
-    get the response headers
-    Args:
-        url (str): The URL to query
-    """
     data = {}
     data['email'] = email
     data = parse.urlencode(data).encode('utf-8')
