@@ -1,21 +1,13 @@
 #!/usr/bin/python3
 """
 Send a POST request to localhost:5000/search_user
-with a query string and print the JSON result to
-standard output
 """
 
 from requests import post
 from sys import argv
 
 def send_query(query_string: str) -> str:
-    """
-    Send the POST questy_string to server
-    Args:
-        query_string (str): the query string
-    Return:
-        string
-    """
+    
     server = "http://0.0.0.0:5000/search_user"
     response = post(server, data={'q': query_string}).text
     try:
