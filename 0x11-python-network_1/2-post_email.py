@@ -17,3 +17,4 @@ def send_email_to_url(url: str, email: str) -> str:
 
 if __name__ == "__main__":
     print(send_email_to_url(argv[1], argv[2]))
+
