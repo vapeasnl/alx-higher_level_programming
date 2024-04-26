@@ -1,16 +1,17 @@
 #!/usr/bin/python3
-"""Send a request to the url and print the response"""
+"""Sends a request to a given URL and displays the response body.
+"""
+import sys
+import urllib.error
+import urllib.request
 
-from urllib import request, error
-from sys import argv
-
-def request_header_property(url: str) -> str:
-    
-    try:
-        with request.urlopen(url) as rep:
-            return rep.read().decode('utf-8')
-    except error.HTTPError as err:
-        return "Error code: {}".format(err.code)
 
 if __name__ == "__main__":
-    print(request_header_property(argv[1]))
+    url = sys.argv[1]
+
+    req = urllib.request.Request(url)
+    try:
+        with urllib.request.urlopen(req) as rep:
+            print(rep.read().decode("ascii"))
+    except urllib.error.HTTPError as err:
+        print("Error code: {}".format(err.code))
