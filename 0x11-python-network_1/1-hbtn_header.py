@@ -1,18 +1,22 @@
 #!/usr/bin/python3
-"""displays value of the X-Request-Id in response"""
-
-from urllib import request, error
+"""
+Displays the value of the X-Request-Id variable
+found in the header of the response
+"""
+import urllib.request
 from sys import argv
 
 
-def request_header_property(url: str) -> str: 
-    try:
-        with request.urlopen(url) as rep:
-            return rep.info()['X-Request-Id']
-    except error.URLError as er:
-        return er.reason
-
+def main(argv):
+    """
+    Method that takes in a URL, sends a request to the URL
+    and displays the value of the X-Request-Id variable
+    found in the header of the response
+    """
+    url = argv
+    with urllib.request.urlopen(url) as response:
+        headers = response.info()
+        print(headers['X-Request-Id'])
 
 if __name__ == "__main__":
-    print(request_header_property(argv[1]))
-
+    main(argv[1])
