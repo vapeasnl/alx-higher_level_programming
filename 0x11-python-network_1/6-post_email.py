@@ -10,8 +10,8 @@ def send_email_to_url(url: str, email: str) -> str:
     data['email'] = email
     try:
         return (post(url, data=data).text)
-    except Exception as e:
-        return e
+    except Exception as exc:
+        return exc
 
 if __name__ == "__main__":
     print(send_email_to_url(argv[1], argv[2]))

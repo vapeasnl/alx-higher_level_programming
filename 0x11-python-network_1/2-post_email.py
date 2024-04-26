@@ -10,10 +10,10 @@ def send_email_to_url(url: str, email: str) -> str:
     data = parse.urlencode(data).encode('utf-8')
     req = request.Request(url, data, method="POST")
     try:
-        with request.urlopen(req) as response:
-            return response.read().decode("utf-8")
-    except error.URLError as e:
-        return e.reason
+        with request.urlopen(req) as rep:
+            return rep.read().decode("utf-8")
+    except error.URLError as err:
+        return err.reason
 
 if __name__ == "__main__":
     print(send_email_to_url(argv[1], argv[2]))

@@ -9,9 +9,9 @@ from sys import argv
 def send_query(query_string: str) -> str:
     
     server = "http://0.0.0.0:5000/search_user"
-    response = post(server, data={'q': query_string}).text
+    resp = post(server, data={'q': query_string}).text
     try:
-        resp_json = eval(response)
+        resp_json = eval(resp)
         if len(resp_json) != 0:
             return "[{}] {}".format(resp_json.get('id'), resp_json.get('name'))
         return "No result"
