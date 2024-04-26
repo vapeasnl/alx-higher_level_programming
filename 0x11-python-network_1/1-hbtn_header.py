@@ -6,6 +6,12 @@ from sys import argv
 
 
 def request_header_property(url: str) -> str:
+     """
+    Send a request to the URL specified and
+    get the response headers
+    Args:
+        url (str): The URL to query
+    """
     
     try:
         with request.urlopen(url) as rep:
